@@ -1,14 +1,14 @@
 # read-pkg [![Build Status](https://travis-ci.org/sindresorhus/read-pkg.svg?branch=master)](https://travis-ci.org/sindresorhus/read-pkg)
 
-> Read a `package.json` file
+> Read a package.json file
 
 
 ## Why
 
-- [Strips UTF-8 BOM.](https://github.com/sindresorhus/strip-bom)
-- [Gracefully handles filesystem issues.](https://github.com/isaacs/node-graceful-fs)
-- [Throws more helpful JSON errors.](https://github.com/sindresorhus/parse-json)
-- [Normalizes the data.](https://github.com/npm/normalize-package-data#what-normalization-currently-entails)
+- [Gracefully handles filesystem issues](https://github.com/isaacs/node-graceful-fs)
+- [Strips UTF-8 BOM](https://github.com/sindresorhus/strip-bom)
+- [Throws more helpful JSON errors](https://github.com/sindresorhus/parse-json)
+- [Normalizes the data](https://github.com/npm/normalize-package-data#what-normalization-currently-entails)
 
 
 ## Install
@@ -69,6 +69,7 @@ Default: `true`
 
 ## Related
 
+- [read-pkg-up](https://github.com/sindresorhus/read-pkg-up) - Read the closest package.json file
 - [write-pkg](https://github.com/sindresorhus/write-pkg) - Write a `package.json` file
 - [load-json-file](https://github.com/sindresorhus/load-json-file) - Read and parse a JSON file
 
