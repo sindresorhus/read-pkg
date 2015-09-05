@@ -2,6 +2,7 @@
 var path = require('path');
 var loadJsonFile = require('load-json-file');
 var normalizePackageData = require('normalize-package-data');
+var pathType = require('path-type');
 
 module.exports = function (fp, opts) {
 	if (typeof fp !== 'string') {
@@ -10,15 +11,22 @@ module.exports = function (fp, opts) {
 	}
 
 	opts = opts || {};
-	fp = path.basename(fp) === 'package.json' ? fp : path.join(fp, 'package.json');
 
-	return loadJsonFile(fp).then(function (x) {
-		if (opts.normalize !== false) {
-			normalizePackageData(x);
-		}
+	return pathType.dir(fp)
+		.then(function (isDir) {
+			if (isDir) {
+				fp = path.join(fp, 'package.json');
+			}
 
-		return x;
-	});
+			return loadJsonFile(fp);
+		})
+		.then(function (x) {
+			if (opts.normalize !== false) {
+				normalizePackageData(x);
+			}
+
+			return x;
+		});
 };
 
 module.exports.sync = function (fp, opts) {
@@ -28,7 +36,7 @@ module.exports.sync = function (fp, opts) {
 	}
 
 	opts = opts || {};
-	fp = path.basename(fp) === 'package.json' ? fp : path.join(fp, 'package.json');
+	fp = pathType.dirSync(fp) ? path.join(fp, 'package.json') : fp;
 
 	var x = loadJsonFile.sync(fp);
 
