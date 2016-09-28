@@ -1,46 +1,49 @@
 'use strict';
-var path = require('path');
-var test = require('ava');
-var fn = require('../');
-var pkg = path.join(__dirname, '..');
-var otherName = path.join(__dirname, 'pkg.json');
+import path from 'path';
+import test from 'ava';
+import m from '../';
 
-test('async', function (t) {
-	return fn(otherName).then(function (x) {
-		t.is(x.name, 'unicorn');
-		t.assert(x._id);
-	});
-});
+const pkg = path.join(__dirname, '..');
+const otherName = path.join(__dirname, 'pkg.json');
 
-test('async - directory', function (t) {
-	return fn(pkg).then(function (x) {
-		t.is(x.name, 'read-pkg');
-		t.assert(x._id);
-	});
-});
-
-test('async - default filepath', function (t) {
-	return fn().then(function (x) {
-		t.is(x.name, 'read-pkg');
-	});
-});
-
-test('sync', function (t) {
-	var x = fn.sync(otherName);
+test('async', async t => {
+	const x = await m(otherName);
 	t.is(x.name, 'unicorn');
-	t.assert(x._id);
-	t.end();
+	t.truthy(x._id);
 });
 
-test('sync - directory', function (t) {
-	var x = fn.sync(pkg);
+test('async - directory', async t => {
+	const x = await m(pkg);
 	t.is(x.name, 'read-pkg');
-	t.assert(x._id);
-	t.end();
+	t.truthy(x._id);
 });
 
-test('sync - default filepath', function (t) {
-	var x = fn.sync();
+test.serial('async - default filepath', async t => {
+	process.chdir('..');
+
+	const x = await m();
 	t.is(x.name, 'read-pkg');
-	t.end();
+
+	process.chdir('test');
+});
+
+test('sync', t => {
+	const x = m.sync(otherName);
+	t.is(x.name, 'unicorn');
+	t.truthy(x._id);
+});
+
+test('sync - directory', t => {
+	const x = m.sync(pkg);
+	t.is(x.name, 'read-pkg');
+	t.truthy(x._id);
+});
+
+test.serial('sync - default filepath', t => {
+	process.chdir('..');
+
+	const x = m.sync();
+	t.is(x.name, 'read-pkg');
+
+	process.chdir('test');
 });
