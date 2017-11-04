@@ -31,9 +31,9 @@
 		"normalize"
 	],
 	"dependencies": {
-		"load-json-file": "^2.0.0",
+		"load-json-file": "^4.0.0",
 		"normalize-package-data": "^2.3.2",
-		"path-type": "^2.0.0"
+		"path-type": "^3.0.0"
 	},
 	"devDependencies": {
 		"ava": "*",
