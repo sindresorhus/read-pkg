@@ -1,7 +1,7 @@
 'use strict';
 import path from 'path';
 import test from 'ava';
-import m from '../';
+import m from '..';
 
 const pkg = path.join(__dirname, '..');
 const otherName = path.join(__dirname, 'pkg.json');
@@ -19,12 +19,8 @@ test('async - directory', async t => {
 });
 
 test.serial('async - default filepath', async t => {
-	process.chdir('..');
-
 	const x = await m();
 	t.is(x.name, 'read-pkg');
-
-	process.chdir('test');
 });
 
 test('sync', t => {
@@ -40,10 +36,6 @@ test('sync - directory', t => {
 });
 
 test.serial('sync - default filepath', t => {
-	process.chdir('..');
-
 	const x = m.sync();
 	t.is(x.name, 'read-pkg');
-
-	process.chdir('test');
 });
