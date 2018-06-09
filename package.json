@@ -31,7 +31,6 @@
     "normalize"
   ],
   "dependencies": {
-    "graceful-fs": "^4.1.11",
     "normalize-package-data": "^2.3.2",
     "util.promisify": "^1.0.0"
   },
