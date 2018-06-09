@@ -1,20 +1,11 @@
 'use strict';
 const path = require('path');
 const fs = require('graceful-fs');
+const promisify = require('util.promisify');
 const normalizePackageData = require('normalize-package-data');
 
+const readFileAsync = promisify(fs.readFile);
 const PACKAGE_FILE = 'package.json';
-
-function readJsonFileAsync(file) {
-	return new Promise((resolve, reject) => {
-		fs.readFile(file, 'utf8', (err, data) => {
-			if (err) {
-				return reject(err);
-			}
-			resolve(data);
-		});
-	});
-}
 
 function packagePath(file) {
 	if (!file) {
@@ -30,7 +21,7 @@ function packagePath(file) {
 
 module.exports = (file, normalize) => {
 	if (normalize !== false) {
-		return readJsonFileAsync(packagePath(file))
+		return readFileAsync(packagePath(file))
 			.then(data => {
 				const manifest = JSON.parse(data);
 				normalizePackageData(manifest);
@@ -38,7 +29,7 @@ module.exports = (file, normalize) => {
 			});
 	}
 
-	return readJsonFileAsync(packagePath(file));
+	return readFileAsync(packagePath(file));
 };
 
 module.exports.sync = (file, normalize) => {

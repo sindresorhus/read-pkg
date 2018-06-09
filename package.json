@@ -32,7 +32,8 @@
   ],
   "dependencies": {
     "graceful-fs": "^4.1.11",
-    "normalize-package-data": "^2.3.2"
+    "normalize-package-data": "^2.3.2",
+    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
