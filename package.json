@@ -31,12 +31,11 @@
     "normalize"
   ],
   "dependencies": {
-    "load-json-file": "^4.0.0",
-    "normalize-package-data": "^2.3.2",
-    "path-type": "^3.0.0"
+    "graceful-fs": "^4.1.11",
+    "normalize-package-data": "^2.3.2"
   },
   "devDependencies": {
-    "ava": "*",
-    "xo": "*"
+    "ava": "^0.25.0",
+    "xo": "^0.20.0"
   }
 }
