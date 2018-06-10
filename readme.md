@@ -41,29 +41,22 @@ readPkg(path.join('unicorn', 'package.json')).then(pkg => {
 
 ## API
 
-### readPkg([path], [options])
+### readPkg([path], [normalize])
 
 Returns a `Promise` for the parsed JSON.
 
-### readPkg.sync([path], [options])
+### readPkg.sync([path], [normalize])
 
 Returns the parsed JSON.
 
 #### path
 
 Type: `string`<br>
-Default: `process.cwd()`
+Default: `path.resolve('package.json')`
 
-Path to a `package.json` file or its directory.
+Absolute path to a `package.json` file.
 
-#### options
-
-##### cwd
-
-Type: `string`<br>
-Default: `'.'`
-
-##### normalize
+#### normalize
 
 Type: `boolean`<br>
 Default: `true`

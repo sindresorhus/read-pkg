@@ -3,18 +3,11 @@ import path from 'path';
 import test from 'ava';
 import m from '..';
 
-const cwd = path.join(__dirname, '..');
 const otherName = path.join(__dirname, 'pkg.json');
 
 test('async', async t => {
 	const x = await m(otherName);
 	t.is(x.name, 'unicorn');
-	t.truthy(x._id);
-});
-
-test('async - directory', async t => {
-	const x = await m({cwd});
-	t.is(x.name, 'read-pkg');
 	t.truthy(x._id);
 });
 
@@ -26,12 +19,6 @@ test.serial('async - default filepath', async t => {
 test('sync', t => {
 	const x = m.sync(otherName);
 	t.is(x.name, 'unicorn');
-	t.truthy(x._id);
-});
-
-test('sync - directory', t => {
-	const x = m.sync({cwd});
-	t.is(x.name, 'read-pkg');
 	t.truthy(x._id);
 });
 
