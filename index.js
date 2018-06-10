@@ -30,7 +30,7 @@ function normalizeOptions(file = PACKAGE_FILE, options = {}) {
 module.exports = (file, options) => {
 	const {filename, normalize} = normalizeOptions(file, options);
 
-	if (normalize !== false) {
+	if (normalize) {
 		return readFileAsync(filename)
 			.then(data => {
 				const manifest = parseJson(data);
@@ -46,7 +46,7 @@ module.exports.sync = (file, options) => {
 	const {filename, normalize} = normalizeOptions(file, options);
 	const manifest = parseJson(fs.readFileSync(filename, 'utf8'));
 
-	if (normalize !== false) {
+	if (normalize) {
 		normalizePackageData(manifest);
 	}
 
