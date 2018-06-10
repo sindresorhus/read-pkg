@@ -2,6 +2,7 @@
 const path = require('path');
 const fs = require('fs');
 const promisify = require('util.promisify');
+const parseJson = require('parse-json');
 const normalizePackageData = require('normalize-package-data');
 
 const readFileAsync = promisify(fs.readFile);
@@ -32,18 +33,18 @@ module.exports = (file, options) => {
 	if (normalize !== false) {
 		return readFileAsync(filename)
 			.then(data => {
-				const manifest = JSON.parse(data);
+				const manifest = parseJson(data);
 				normalizePackageData(manifest);
 				return manifest;
 			});
 	}
 
-	return readFileAsync(file).then(JSON.parse);
+	return readFileAsync(file).then(parseJson);
 };
 
 module.exports.sync = (file, options) => {
 	const {filename, normalize} = normalizeOptions(file, options);
-	const manifest = JSON.parse(fs.readFileSync(filename, 'utf8'));
+	const manifest = parseJson(fs.readFileSync(filename, 'utf8'));
 
 	if (normalize !== false) {
 		normalizePackageData(manifest);
