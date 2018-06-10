@@ -59,10 +59,15 @@ Path to a `package.json` file or its directory.
 
 #### options
 
+##### cwd
+
+Type: `string`<br>
+Default: `true`
+
 ##### normalize
 
 Type: `boolean`<br>
-Default: `true`
+Default: `'.'`
 
 [Normalize](https://github.com/npm/normalize-package-data#what-normalization-currently-entails) the package data.
 

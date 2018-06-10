@@ -3,7 +3,7 @@ import path from 'path';
 import test from 'ava';
 import m from '..';
 
-const pkg = path.join(__dirname, '..');
+const cwd = path.join(__dirname, '..');
 const otherName = path.join(__dirname, 'pkg.json');
 
 test('async', async t => {
@@ -13,7 +13,7 @@ test('async', async t => {
 });
 
 test('async - directory', async t => {
-	const x = await m(pkg);
+	const x = await m({cwd});
 	t.is(x.name, 'read-pkg');
 	t.truthy(x._id);
 });
@@ -30,7 +30,7 @@ test('sync', t => {
 });
 
 test('sync - directory', t => {
-	const x = m.sync(pkg);
+	const x = m.sync({cwd});
 	t.is(x.name, 'read-pkg');
 	t.truthy(x._id);
 });
