@@ -6,7 +6,6 @@
 ## Why
 
 - [Gracefully handles filesystem issues](https://github.com/isaacs/node-graceful-fs)
-- ~~[Strips UTF-8 BOM](https://github.com/sindresorhus/strip-bom)~~ (Removed in 4.0.0)
 - [Throws more helpful JSON errors](https://github.com/sindresorhus/parse-json)
 - [Normalizes the data](https://github.com/npm/normalize-package-data#what-normalization-currently-entails)
 
@@ -42,11 +41,11 @@ readPkg(path.join('unicorn', 'package.json')).then(pkg => {
 
 ## API
 
-### readPkg([path], [normalize])
+### readPkg([path], [options])
 
 Returns a `Promise` for the parsed JSON.
 
-### readPkg.sync([path], [normalize])
+### readPkg.sync([path], [options])
 
 Returns the parsed JSON.
 
@@ -62,12 +61,12 @@ Path to a `package.json` file or its directory.
 ##### cwd
 
 Type: `string`<br>
-Default: `true`
+Default: `'.'`
 
 ##### normalize
 
 Type: `boolean`<br>
-Default: `'.'`
+Default: `true`
 
 [Normalize](https://github.com/npm/normalize-package-data#what-normalization-currently-entails) the package data.
 
