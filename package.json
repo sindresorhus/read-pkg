@@ -10,10 +10,10 @@
     "url": "sindresorhus.com"
   },
   "engines": {
-    "node": ">=4"
+    "node": ">=6.9.4"
   },
   "scripts": {
-    "test": "xo && ava"
+    "test": "xo --fix && ava"
   },
   "files": [
     "index.js"
@@ -31,12 +31,12 @@
     "normalize"
   ],
   "dependencies": {
-    "load-json-file": "^4.0.0",
     "normalize-package-data": "^2.3.2",
-    "path-type": "^3.0.0"
+    "parse-json": "^4.0.0",
+    "util.promisify": "^1.0.0"
   },
   "devDependencies": {
-    "ava": "*",
-    "xo": "*"
+    "ava": "^0.25.0",
+    "xo": "^0.20.0"
   }
 }

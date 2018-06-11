@@ -1,47 +1,29 @@
 'use strict';
 const path = require('path');
-const loadJsonFile = require('load-json-file');
-const pathType = require('path-type');
+const fs = require('fs');
+const promisify = require('util.promisify');
+const parseJson = require('parse-json');
+const normalizePackageData = require('normalize-package-data');
 
-module.exports = (fp, opts) => {
-	if (typeof fp !== 'string') {
-		opts = fp;
-		fp = '.';
+const readFileAsync = promisify(fs.readFile);
+const CWD = process.cwd();
+const PACKAGE_FILE = 'package.json';
+
+function readPackage(filename, normalize, contents) {
+	const manifest = parseJson(contents, path.relative(CWD, filename));
+
+	if (normalize) {
+		normalizePackageData(manifest);
 	}
 
-	opts = opts || {};
+	return manifest;
+}
 
-	return pathType.dir(fp)
-		.then(isDir => {
-			if (isDir) {
-				fp = path.join(fp, 'package.json');
-			}
-
-			return loadJsonFile(fp);
-		})
-		.then(x => {
-			if (opts.normalize !== false) {
-				require('normalize-package-data')(x);
-			}
-
-			return x;
-		});
+module.exports = (filename = path.resolve(PACKAGE_FILE), normalize = true) => {
+	return readFileAsync(filename, 'utf8')
+		.then(contents => readPackage(filename, normalize, contents));
 };
 
-module.exports.sync = (fp, opts) => {
-	if (typeof fp !== 'string') {
-		opts = fp;
-		fp = '.';
-	}
-
-	opts = opts || {};
-	fp = pathType.dirSync(fp) ? path.join(fp, 'package.json') : fp;
-
-	const x = loadJsonFile.sync(fp);
-
-	if (opts.normalize !== false) {
-		require('normalize-package-data')(x);
-	}
-
-	return x;
+module.exports.sync = (filename = path.resolve(PACKAGE_FILE), normalize = true) => {
+	return readPackage(filename, normalize, fs.readFileSync(filename, 'utf8'));
 };
