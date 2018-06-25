@@ -23,20 +23,10 @@ $ npm install read-pkg
 ```js
 const readPkg = require('read-pkg');
 
-readPkg().then(pkg => {
-	console.log(pkg);
+(async () => {
+	console.log( await readPkg());
 	//=> {name: 'read-pkg', ...}
-});
-
-readPkg(__dirname).then(pkg => {
-	console.log(pkg);
-	//=> {name: 'read-pkg', ...}
-});
-
-readPkg(path.join('unicorn', 'package.json')).then(pkg => {
-	console.log(pkg);
-	//=> {name: 'read-pkg', ...}
-});
+})();
 ```
 
 
