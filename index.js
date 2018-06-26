@@ -2,9 +2,9 @@
 const fs = require('fs');
 const path = require('path');
 const parseJson = require('parse-json');
-const promisify = require('util.promisify');
+const pify = require('pify');
 
-const readFileAsync = promisify(fs.readFile);
+const readFileAsync = pify(fs.readFile);
 
 module.exports = options => {
 	options = Object.assign({
