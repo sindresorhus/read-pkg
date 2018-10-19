@@ -1,4 +1,4 @@
-export interface IOptions {
+export interface Options {
 	/**
 	 * Directory to start from.
 	 *
@@ -13,20 +13,20 @@ export interface IOptions {
 	normalize?: boolean;
 }
 
-export interface IPackage {
+export interface PackageMetadata {
 	[key: string]: any;
 }
 
 /**
  * Returns a `Promise` for the parsed JSON.
  */
-declare function readPkg(options?: IOptions): Promise<IPackage>;
+declare function readPkg(options?: Options): Promise<PackageMetadata>;
 
 declare namespace readPkg {
 	/**
 	 * Returns the parsed JSON.
 	 */
-	function sync(options?: IOptions): IPackage;
+	function sync(options?: Options): PackageMetadata;
 }
 
 export default readPkg;
