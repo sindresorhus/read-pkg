@@ -4,7 +4,7 @@ export interface IOptions {
 	 *
 	 * @default process.cwd()
 	 */
-	cwd: string;
+	cwd?: string;
 	/**
 	 * [Normalize](https://github.com/npm/normalize-package-data#what-normalization-currently-entails) the package data.
 	 *
