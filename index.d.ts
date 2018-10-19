@@ -1,6 +1,7 @@
 export interface IOptions {
 	/**
 	 * Directory to start from.
+	 *
 	 * @default process.cwd()
 	 */
 	cwd: string;
