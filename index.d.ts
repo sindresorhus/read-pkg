@@ -14,7 +14,7 @@ export interface Options {
 }
 
 export interface PackageMetadata {
-	[key: string]: any;
+	[key: string]: unknown;
 }
 
 /**
