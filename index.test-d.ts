@@ -1,6 +1,5 @@
 import {expectType} from 'tsd-check';
-import readPkg from '.';
-import {PackageMetadata} from '.';
+import readPkg, { PackageMetadata } from '.';
 
 (async () => {
 	expectType<PackageMetadata>(await readPkg());
