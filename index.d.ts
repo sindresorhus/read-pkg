@@ -20,13 +20,8 @@ export interface PackageMetadata {
 /**
  * Returns a `Promise` for the parsed JSON.
  */
-declare function readPkg(options?: Options): Promise<PackageMetadata>;
-
-declare namespace readPkg {
-	/**
-	 * Returns the parsed JSON.
-	 */
-	function sync(options?: Options): PackageMetadata;
-}
-
-export default readPkg;
+export default function (options?: Options): Promise<PackageMetadata>;
+/**
+ * Returns the parsed JSON.
+ */
+export function sync (options?: Options): PackageMetadata;
