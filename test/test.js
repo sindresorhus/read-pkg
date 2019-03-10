@@ -1,30 +1,30 @@
 'use strict';
 import path from 'path';
 import test from 'ava';
-import m from '..';
+import readPackage from '..';
 
 process.chdir(__dirname);
 
 const rootCwd = path.join(__dirname, '..');
 
 test('async', async t => {
-	const x = await m();
-	t.is(x.name, 'unicorn');
-	t.truthy(x._id);
+	const package_ = await readPackage();
+	t.is(package_.name, 'unicorn');
+	t.truthy(package_._id);
 });
 
 test('async - cwd option', async t => {
-	const x = await m({cwd: rootCwd});
-	t.is(x.name, 'read-pkg');
+	const package_ = await readPackage({cwd: rootCwd});
+	t.is(package_.name, 'read-pkg');
 });
 
 test('sync', t => {
-	const x = m.sync();
-	t.is(x.name, 'unicorn');
-	t.truthy(x._id);
+	const package_ = readPackage.sync();
+	t.is(package_.name, 'unicorn');
+	t.truthy(package_._id);
 });
 
 test('sync - cwd option', t => {
-	const x = m.sync({cwd: rootCwd});
-	t.is(x.name, 'read-pkg');
+	const package_ = readPackage.sync({cwd: rootCwd});
+	t.is(package_.name, 'read-pkg');
 });

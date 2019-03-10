@@ -1,35 +1,34 @@
 'use strict';
+const {promisify} = require('util');
 const fs = require('fs');
 const path = require('path');
 const parseJson = require('parse-json');
-const pify = require('pify');
 
-const readFileAsync = pify(fs.readFile);
+const readFileAsync = promisify(fs.readFile);
 
-module.exports = options => {
-	options = Object.assign({
+module.exports = async options => {
+	options = {
 		cwd: process.cwd(),
-		normalize: true
-	}, options);
+		normalize: true,
+		...options
+	};
 
 	const filePath = path.resolve(options.cwd, 'package.json');
+	const json = parseJson(await readFileAsync(filePath, 'utf8'));
 
-	return readFileAsync(filePath, 'utf8').then(file => {
-		const json = parseJson(file);
+	if (options.normalize) {
+		require('normalize-package-data')(json);
+	}
 
-		if (options.normalize) {
-			require('normalize-package-data')(json);
-		}
-
-		return json;
-	});
+	return json;
 };
 
 module.exports.sync = options => {
-	options = Object.assign({
+	options = {
 		cwd: process.cwd(),
-		normalize: true
-	}, options);
+		normalize: true,
+		...options
+	};
 
 	const filePath = path.resolve(options.cwd, 'package.json');
 	const json = parseJson(fs.readFileSync(filePath, 'utf8'));
