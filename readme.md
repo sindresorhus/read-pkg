@@ -36,7 +36,7 @@ const readPkg = require('read-pkg');
 
 ### readPkg([options])
 
-Returns a `Promise` for the parsed JSON.
+Returns a `Promise<object>` with the parsed JSON.
 
 ### readPkg.sync([options])
 
@@ -44,7 +44,7 @@ Returns the parsed JSON.
 
 #### options
 
-Type: `Object`
+Type: `object`
 
 ##### cwd
 
