@@ -27,7 +27,6 @@
 		"fs",
 		"graceful",
 		"load",
-		"pkg",
 		"package",
 		"normalize"
 	],

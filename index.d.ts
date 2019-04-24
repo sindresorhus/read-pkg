@@ -8,18 +8,18 @@ declare namespace readPkg {
 
 		@default true
 		*/
-		normalize?: boolean;
+		readonly normalize?: boolean;
 
 		/**
 		Current working directory.
 
 		@default process.cwd()
 		*/
-		cwd?: string;
+		readonly cwd?: string;
 	}
 
 	interface NormalizeOptions extends Options {
-		normalize: true;
+		readonly normalize: true;
 	}
 
 	type NormalizedPackageJson = PackageJson & normalize.Package;
