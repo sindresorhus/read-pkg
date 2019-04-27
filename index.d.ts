@@ -19,7 +19,7 @@ declare namespace readPkg {
 	}
 
 	interface NormalizeOptions extends Options {
-		readonly normalize: true;
+		readonly normalize?: true;
 	}
 
 	type NormalizedPackageJson = PackageJson & normalize.Package;

@@ -11,10 +11,10 @@ expectType<Promise<readPkg.PackageJson>>(readPkg({normalize: false}));
 expectError<Promise<readPkg.NormalizedPackageJson>>(
 	readPkg({normalize: false})
 );
-expectType<Promise<readPkg.PackageJson>>(readPkg({cwd: '.'}));
+expectType<Promise<readPkg.NormalizedPackageJson>>(readPkg({cwd: '.'}));
 
 expectType<readPkg.NormalizedPackageJson>(readPkg.sync());
 expectType<readPkg.NormalizedPackageJson>(readPkg.sync({normalize: true}));
 expectType<readPkg.PackageJson>(readPkg.sync({normalize: false}));
 expectError<readPkg.NormalizedPackageJson>(readPkg.sync({normalize: false}));
-expectType<readPkg.PackageJson>(readPkg.sync({cwd: '.'}));
+expectType<readPkg.NormalizedPackageJson>(readPkg.sync({cwd: '.'}));
