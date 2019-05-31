@@ -34,11 +34,11 @@ const readPkg = require('read-pkg');
 
 ## API
 
-### readPkg([options])
+### readPkg(options?)
 
 Returns a `Promise<object>` with the parsed JSON.
 
-### readPkg.sync([options])
+### readPkg.sync(options?)
 
 Returns the parsed JSON.
 
@@ -68,6 +68,14 @@ Default: `true`
 - [load-json-file](https://github.com/sindresorhus/load-json-file) - Read and parse a JSON file
 
 
-## License
+---
 
-MIT © [Sindre Sorhus](https://sindresorhus.com)
+<div align="center">
+	<b>
+		<a href="https://tidelift.com/subscription/pkg/npm-read-pkg?utm_source=npm-read-pkg&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
+	</b>
+	<br>
+	<sub>
+		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
+	</sub>
+</div>
