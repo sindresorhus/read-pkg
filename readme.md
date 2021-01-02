@@ -1,4 +1,4 @@
-# read-pkg [![Build Status](https://travis-ci.org/sindresorhus/read-pkg.svg?branch=master)](https://travis-ci.org/sindresorhus/read-pkg)
+# read-pkg
 
 > Read a package.json file
 
