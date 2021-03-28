@@ -1,20 +1,20 @@
-import {expectType, expectError} from 'tsd';
-import readPkg = require('.');
+import {expectType, expectError, expectAssignable} from 'tsd';
+import {readPackageAsync, readPackageSync, Options, NormalizedPackageJson, PackageJson} from './index.js';
 
-const options: readPkg.Options = {};
-expectError<readPkg.NormalizedPackageJson>({});
-expectType<readPkg.PackageJson>({});
+const options: Options = {};
+expectError<NormalizedPackageJson>({});
+expectAssignable<PackageJson>({});
 
-expectType<Promise<readPkg.NormalizedPackageJson>>(readPkg());
-expectType<Promise<readPkg.NormalizedPackageJson>>(readPkg({normalize: true}));
-expectType<Promise<readPkg.PackageJson>>(readPkg({normalize: false}));
-expectError<Promise<readPkg.NormalizedPackageJson>>(
-	readPkg({normalize: false})
+expectType<Promise<NormalizedPackageJson>>(readPackageAsync());
+expectType<Promise<NormalizedPackageJson>>(readPackageAsync({normalize: true}));
+expectType<Promise<PackageJson>>(readPackageAsync({normalize: false}));
+expectError<Promise<NormalizedPackageJson>>(
+	readPackageAsync({normalize: false})
 );
-expectType<Promise<readPkg.NormalizedPackageJson>>(readPkg({cwd: '.'}));
+expectType<Promise<NormalizedPackageJson>>(readPackageAsync({cwd: '.'}));
 
-expectType<readPkg.NormalizedPackageJson>(readPkg.sync());
-expectType<readPkg.NormalizedPackageJson>(readPkg.sync({normalize: true}));
-expectType<readPkg.PackageJson>(readPkg.sync({normalize: false}));
-expectError<readPkg.NormalizedPackageJson>(readPkg.sync({normalize: false}));
-expectType<readPkg.NormalizedPackageJson>(readPkg.sync({cwd: '.'}));
+expectType<NormalizedPackageJson>(readPackageSync());
+expectType<NormalizedPackageJson>(readPackageSync({normalize: true}));
+expectType<PackageJson>(readPackageSync({normalize: false}));
+expectError<NormalizedPackageJson>(readPackageSync({normalize: false}));
+expectType<NormalizedPackageJson>(readPackageSync({cwd: '.'}));

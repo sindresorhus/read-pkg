@@ -1,30 +1,30 @@
-'use strict';
+import {fileURLToPath} from 'url';
 import path from 'path';
 import test from 'ava';
-import readPackage from '..';
+import {readPackageAsync, readPackageSync} from '../index.js';
 
-process.chdir(__dirname);
-
-const rootCwd = path.join(__dirname, '..');
+const dirname = path.dirname(fileURLToPath(import.meta.url));
+process.chdir(dirname);
+const rootCwd = path.join(dirname, '..');
 
 test('async', async t => {
-	const package_ = await readPackage();
+	const package_ = await readPackageAsync();
 	t.is(package_.name, 'unicorn');
 	t.truthy(package_._id);
 });
 
 test('async - cwd option', async t => {
-	const package_ = await readPackage({cwd: rootCwd});
+	const package_ = await readPackageAsync({cwd: rootCwd});
 	t.is(package_.name, 'read-pkg');
 });
 
 test('sync', t => {
-	const package_ = readPackage.sync();
+	const package_ = readPackageSync();
 	t.is(package_.name, 'unicorn');
 	t.truthy(package_._id);
 });
 
 test('sync - cwd option', t => {
-	const package_ = readPackage.sync({cwd: rootCwd});
+	const package_ = readPackageSync({cwd: rootCwd});
 	t.is(package_.name, 'read-pkg');
 });
