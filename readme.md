@@ -18,10 +18,10 @@ $ npm install read-pkg
 ```js
 import {readPackageAsync} from 'read-pkg';
 
-console.log(await readPkg());
+console.log(await readPackageAsync());
 //=> {name: 'read-pkg', …}
 
-console.log(await readPkg({cwd: 'some-other-directory'}));
+console.log(await readPackageAsync({cwd: 'some-other-directory'}));
 //=> {name: 'unicorn', …}
 ```
 
