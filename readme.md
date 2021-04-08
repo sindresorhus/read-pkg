@@ -16,7 +16,7 @@ $ npm install read-pkg
 ## Usage
 
 ```js
-import {readPackageAsync} from 'read-pkg';
+import {readPackageAsync as readPkg} from 'read-pkg';
 
 console.log(await readPkg());
 //=> {name: 'read-pkg', …}
