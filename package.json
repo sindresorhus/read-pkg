@@ -34,12 +34,12 @@
 		"normalize"
 	],
 	"dependencies": {
-		"@types/normalize-package-data": "^2.4.0",
 		"normalize-package-data": "^3.0.2",
 		"parse-json": "^5.2.0",
 		"type-fest": "^1.0.1"
 	},
 	"devDependencies": {
+		"@types/normalize-package-data": "^2.4.0",
 		"ava": "^3.15.0",
 		"tsd": "^0.14.0",
 		"xo": "^0.38.2"
