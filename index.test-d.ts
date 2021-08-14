@@ -1,17 +1,16 @@
 import {expectType, expectError, expectAssignable} from 'tsd';
-import {readPackageAsync, readPackageSync, Options, NormalizedPackageJson, PackageJson} from './index.js';
+import {readPackage, readPackageSync, NormalizedPackageJson, PackageJson} from './index.js';
 
-const options: Options = {};
 expectError<NormalizedPackageJson>({});
 expectAssignable<PackageJson>({});
 
-expectType<Promise<NormalizedPackageJson>>(readPackageAsync());
-expectType<Promise<NormalizedPackageJson>>(readPackageAsync({normalize: true}));
-expectType<Promise<PackageJson>>(readPackageAsync({normalize: false}));
+expectType<Promise<NormalizedPackageJson>>(readPackage());
+expectType<Promise<NormalizedPackageJson>>(readPackage({normalize: true}));
+expectType<Promise<PackageJson>>(readPackage({normalize: false}));
 expectError<Promise<NormalizedPackageJson>>(
-	readPackageAsync({normalize: false})
+	readPackage({normalize: false}),
 );
-expectType<Promise<NormalizedPackageJson>>(readPackageAsync({cwd: '.'}));
+expectType<Promise<NormalizedPackageJson>>(readPackage({cwd: '.'}));
 
 expectType<NormalizedPackageJson>(readPackageSync());
 expectType<NormalizedPackageJson>(readPackageSync({normalize: true}));

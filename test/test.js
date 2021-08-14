@@ -1,20 +1,20 @@
 import {fileURLToPath} from 'url';
 import path from 'path';
 import test from 'ava';
-import {readPackageAsync, readPackageSync} from '../index.js';
+import {readPackage, readPackageSync} from '../index.js';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 process.chdir(dirname);
 const rootCwd = path.join(dirname, '..');
 
 test('async', async t => {
-	const package_ = await readPackageAsync();
+	const package_ = await readPackage();
 	t.is(package_.name, 'unicorn');
 	t.truthy(package_._id);
 });
 
 test('async - cwd option', async t => {
-	const package_ = await readPackageAsync({cwd: rootCwd});
+	const package_ = await readPackage({cwd: rootCwd});
 	t.is(package_.name, 'read-pkg');
 });
 

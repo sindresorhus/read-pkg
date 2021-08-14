@@ -16,18 +16,18 @@ $ npm install read-pkg
 ## Usage
 
 ```js
-import {readPackageAsync} from 'read-pkg';
+import {readPackage} from 'read-pkg';
 
-console.log(await readPackageAsync());
+console.log(await readPackage());
 //=> {name: 'read-pkg', …}
 
-console.log(await readPackageAsync({cwd: 'some-other-directory'}));
+console.log(await readPackage({cwd: 'some-other-directory'}));
 //=> {name: 'unicorn', …}
 ```
 
 ## API
 
-### readPackageAsync(options?)
+### readPackage(options?)
 
 Returns a `Promise<object>` with the parsed JSON.
 

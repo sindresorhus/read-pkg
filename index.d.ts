@@ -29,17 +29,17 @@ export type PackageJson = typeFest.PackageJson;
 
 @example
 ```
-import {readPackageAsync} from 'read-pkg';
+import {readPackage} from 'read-pkg';
 
-console.log(await readPackageAsync());
+console.log(await readPackage());
 //=> {name: 'read-pkg', …}
 
-console.log(await readPackageAsync({cwd: 'some-other-directory'});
+console.log(await readPackage({cwd: 'some-other-directory'});
 //=> {name: 'unicorn', …}
 ```
 */
-export function readPackageAsync(options?: NormalizeOptions): Promise<NormalizedPackageJson>;
-export function readPackageAsync(options: Options): Promise<PackageJson>;
+export function readPackage(options?: NormalizeOptions): Promise<NormalizedPackageJson>;
+export function readPackage(options: Options): Promise<PackageJson>;
 
 /**
 @returns The parsed JSON.

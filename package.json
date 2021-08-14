@@ -13,7 +13,7 @@
 	"type": "module",
 	"exports": "./index.js",
 	"engines": {
-		"node": ">=12"
+		"node": ">=12.20"
 	},
 	"scripts": {
 		"test": "xo && ava && tsd"
@@ -34,15 +34,15 @@
 		"normalize"
 	],
 	"dependencies": {
-		"@types/normalize-package-data": "^2.4.0",
+		"@types/normalize-package-data": "^2.4.1",
 		"normalize-package-data": "^3.0.2",
 		"parse-json": "^5.2.0",
-		"type-fest": "^1.0.1"
+		"type-fest": "^2.0.0"
 	},
 	"devDependencies": {
 		"ava": "^3.15.0",
-		"tsd": "^0.14.0",
-		"xo": "^0.38.2"
+		"tsd": "^0.17.0",
+		"xo": "^0.44.0"
 	},
 	"xo": {
 		"ignores": [
