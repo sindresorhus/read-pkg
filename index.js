@@ -1,10 +1,14 @@
 import process from 'node:process';
 import fs, {promises as fsPromises} from 'node:fs';
 import path from 'node:path';
+import {fileURLToPath} from 'node:url';
 import parseJson from 'parse-json';
 import normalizePackageData from 'normalize-package-data';
 
-export async function readPackage({cwd = process.cwd(), normalize = true} = {}) {
+const toPath = urlOrPath => urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath;
+
+export async function readPackage({cwd, normalize = true} = {}) {
+	cwd = toPath(cwd) || process.cwd();
 	const filePath = path.resolve(cwd, 'package.json');
 	const json = parseJson(await fsPromises.readFile(filePath, 'utf8'));
 
@@ -15,7 +19,8 @@ export async function readPackage({cwd = process.cwd(), normalize = true} = {}) 
 	return json;
 }
 
-export function readPackageSync({cwd = process.cwd(), normalize = true} = {}) {
+export function readPackageSync({cwd, normalize = true} = {}) {
+	cwd = toPath(cwd) || process.cwd();
 	const filePath = path.resolve(cwd, 'package.json');
 	const json = parseJson(fs.readFileSync(filePath, 'utf8'));
 

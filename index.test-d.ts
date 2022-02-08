@@ -11,9 +11,11 @@ expectError<Promise<NormalizedPackageJson>>(
 	readPackage({normalize: false}),
 );
 expectType<Promise<NormalizedPackageJson>>(readPackage({cwd: '.'}));
+expectType<Promise<NormalizedPackageJson>>(readPackage({cwd: new URL('file:///path/to/cwd/')}));
 
 expectType<NormalizedPackageJson>(readPackageSync());
 expectType<NormalizedPackageJson>(readPackageSync({normalize: true}));
 expectType<PackageJson>(readPackageSync({normalize: false}));
 expectError<NormalizedPackageJson>(readPackageSync({normalize: false}));
 expectType<NormalizedPackageJson>(readPackageSync({cwd: '.'}));
+expectType<NormalizedPackageJson>(readPackageSync({cwd: new URL('file:///path/to/cwd/')}));

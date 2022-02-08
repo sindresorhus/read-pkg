@@ -1,4 +1,4 @@
-import {fileURLToPath} from 'url';
+import {fileURLToPath, pathToFileURL} from 'url';
 import path from 'path';
 import test from 'ava';
 import {readPackage, readPackageSync} from '../index.js';
@@ -16,6 +16,10 @@ test('async', async t => {
 test('async - cwd option', async t => {
 	const package_ = await readPackage({cwd: rootCwd});
 	t.is(package_.name, 'read-pkg');
+	t.deepEqual(
+		await readPackage({cwd: pathToFileURL(rootCwd)}),
+		package_,
+	);
 });
 
 test('sync', t => {
@@ -27,4 +31,8 @@ test('sync', t => {
 test('sync - cwd option', t => {
 	const package_ = readPackageSync({cwd: rootCwd});
 	t.is(package_.name, 'read-pkg');
+	t.deepEqual(
+		readPackageSync({cwd: pathToFileURL(rootCwd)}),
+		package_,
+	);
 });
