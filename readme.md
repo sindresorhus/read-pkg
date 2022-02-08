@@ -41,7 +41,7 @@ Type: `object`
 
 ##### cwd
 
-Type: `string`\
+Type: `URL | string`\
 Default: `process.cwd()`
 
 Current working directory.

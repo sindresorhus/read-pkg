@@ -7,7 +7,7 @@ export interface Options {
 
 	@default process.cwd()
 	*/
-	readonly cwd?: string;
+	readonly cwd?: URL | string;
 
 	/**
 	[Normalize](https://github.com/npm/normalize-package-data#what-normalization-currently-entails) the package data.
