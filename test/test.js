@@ -78,3 +78,20 @@ test('parsePackage - normalize option', t => {
 		package_,
 	);
 });
+
+test('parsePackage - errors on invalid input', t => {
+	t.throws(
+		() => parsePackage(['foo', 'bar']),
+		{message: '`packageFile` should be either an `object` or a `string`.'},
+	);
+
+	t.throws(
+		() => parsePackage(null),
+		{message: '`packageFile` should be either an `object` or a `string`.'},
+	);
+
+	t.throws(
+		() => parsePackage(() => ({name: 'unicorn'})),
+		{message: '`packageFile` should be either an `object` or a `string`.'},
+	);
+});

@@ -15,7 +15,7 @@ const getPackagePath = cwd => {
 const _readPackage = (file, normalize) => {
 	const json = typeof file === 'string'
 		? parseJson(file)
-		: file; // TODO: ensure `file` is an object here
+		: file;
 
 	if (normalize) {
 		normalizePackageData(json);
@@ -35,5 +35,12 @@ export function readPackageSync({cwd, normalize = true} = {}) {
 }
 
 export function parsePackage(packageFile, {normalize = true} = {}) {
+	const isObject = packageFile !== null && typeof packageFile === 'object' && !Array.isArray(packageFile);
+	const isString = typeof packageFile === 'string';
+
+	if (!isObject && !isString) {
+		throw new TypeError('`packageFile` should be either an `object` or a `string`.');
+	}
+
 	return _readPackage(packageFile, normalize);
 }
