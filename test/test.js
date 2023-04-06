@@ -21,6 +21,11 @@ test('async - cwd option', async t => {
 	);
 });
 
+test('async - normalize option', async t => {
+	const package_ = await readPackage({normalize: false});
+	t.is(package_.name, 'unicorn ');
+});
+
 test('sync', t => {
 	const package_ = readPackageSync();
 	t.is(package_.name, 'unicorn');
@@ -34,4 +39,9 @@ test('sync - cwd option', t => {
 		readPackageSync({cwd: pathToFileURL(rootCwd)}),
 		package_,
 	);
+});
+
+test('sync - normalize option', async t => {
+	const package_ = readPackageSync({normalize: false});
+	t.is(package_.name, 'unicorn ');
 });
