@@ -3,8 +3,7 @@ import path from 'path';
 import test from 'ava';
 import {readPackage, readPackageSync} from '../index.js';
 
-const dirname = path.dirname(fileURLToPath(import.meta.url));
-process.chdir(dirname);
+const dirname = path.dirname(fileURLToPath(test.meta.file));
 const rootCwd = path.join(dirname, '..');
 
 test('async', async t => {

@@ -1,7 +1,7 @@
-import * as typeFest from 'type-fest';
-import * as normalize from 'normalize-package-data';
+import type {PackageJson as typeFestPackageJson} from 'type-fest';
+import type {Package as normalizePackage} from 'normalize-package-data';
 
-export interface Options {
+export type Options = {
 	/**
 	Current working directory.
 
@@ -15,14 +15,15 @@ export interface Options {
 	@default true
 	*/
 	readonly normalize?: boolean;
-}
+};
 
-export interface NormalizeOptions extends Options {
+export type NormalizeOptions = {
 	readonly normalize?: true;
-}
+} & Options;
 
-export type NormalizedPackageJson = PackageJson & normalize.Package;
-export type PackageJson = typeFest.PackageJson;
+// eslint-disable-next-line @typescript-eslint/no-redundant-type-constituents
+export type NormalizedPackageJson = PackageJson & normalizePackage;
+export type PackageJson = typeFestPackageJson;
 
 /**
 @returns The parsed JSON.

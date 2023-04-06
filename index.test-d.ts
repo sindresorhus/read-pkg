@@ -1,5 +1,5 @@
 import {expectType, expectError, expectAssignable} from 'tsd';
-import {readPackage, readPackageSync, NormalizedPackageJson, PackageJson} from './index.js';
+import {readPackage, readPackageSync, type NormalizedPackageJson, type PackageJson} from './index.js';
 
 expectError<NormalizedPackageJson>({});
 expectAssignable<PackageJson>({});
