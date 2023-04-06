@@ -44,7 +44,7 @@ export function parsePackage(packageFile, {normalize = true} = {}) {
 
 	// Input should not be modified - if `structuredClone` is available, do a deep clone, shallow otherwise
 	const clonedPackageFile = isObject
-		? (structuredClone === undefined
+		? (globalThis.structuredClone === undefined
 			? {...packageFile}
 			: structuredClone(packageFile))
 		: packageFile;
