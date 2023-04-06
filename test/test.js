@@ -41,7 +41,7 @@ test('sync - cwd option', t => {
 	);
 });
 
-test('sync - normalize option', async t => {
+test('sync - normalize option', t => {
 	const package_ = readPackageSync({normalize: false});
 	t.is(package_.name, 'unicorn ');
 });
