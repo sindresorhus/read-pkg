@@ -53,7 +53,7 @@ const pkgJson = {
 };
 
 test('parsePackage - json input', t => {
-	const package_ = parsePackage({...pkgJson});
+	const package_ = parsePackage(pkgJson);
 	t.is(package_.name, 'unicorn');
 	t.deepEqual(
 		readPackageSync(),
@@ -71,7 +71,7 @@ test('parsePackage - string input', t => {
 });
 
 test('parsePackage - normalize option', t => {
-	const package_ = parsePackage({...pkgJson}, {normalize: false});
+	const package_ = parsePackage(pkgJson, {normalize: false});
 	t.is(package_.name, 'unicorn ');
 	t.deepEqual(
 		readPackageSync({normalize: false}),
@@ -94,4 +94,11 @@ test('parsePackage - errors on invalid input', t => {
 		() => parsePackage(() => ({name: 'unicorn'})),
 		{message: '`packageFile` should be either an `object` or a `string`.'},
 	);
+});
+
+test('parsePackage - does not modify source object', t => {
+	const pkgObject = {name: 'unicorn', version: '1.0.0'};
+	const package_ = parsePackage(pkgObject);
+
+	t.not(pkgObject, package_);
 });
