@@ -1,5 +1,11 @@
 import {expectType, expectError, expectAssignable} from 'tsd';
-import {readPackage, readPackageSync, type NormalizedPackageJson, type PackageJson} from './index.js';
+import {
+	readPackage,
+	readPackageSync,
+	parsePackage,
+	type NormalizedPackageJson,
+	type PackageJson,
+} from './index.js';
 
 expectError<NormalizedPackageJson>({});
 expectAssignable<PackageJson>({});
@@ -19,3 +25,12 @@ expectType<PackageJson>(readPackageSync({normalize: false}));
 expectError<NormalizedPackageJson>(readPackageSync({normalize: false}));
 expectType<NormalizedPackageJson>(readPackageSync({cwd: '.'}));
 expectType<NormalizedPackageJson>(readPackageSync({cwd: new URL('file:///path/to/cwd/')}));
+
+expectType<NormalizedPackageJson>(parsePackage(''));
+expectType<NormalizedPackageJson>(parsePackage({name: 'unicorn'}));
+expectType<NormalizedPackageJson>(parsePackage('', {normalize: true}));
+expectType<PackageJson>(parsePackage('', {normalize: false}));
+expectType<PackageJson>(parsePackage({name: 'unicorn'}, {normalize: false}));
+expectError(parsePackage());
+expectError<NormalizedPackageJson>(parsePackage('', {normalize: false}));
+expectError(parsePackage('', {cwd: '.'}));

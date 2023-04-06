@@ -1,7 +1,7 @@
-import {fileURLToPath, pathToFileURL} from 'url';
-import path from 'path';
+import {fileURLToPath, pathToFileURL} from 'node:url';
+import path from 'node:path';
 import test from 'ava';
-import {readPackage, readPackageSync} from '../index.js';
+import {readPackage, readPackageSync, parsePackage} from '../index.js';
 
 const dirname = path.dirname(fileURLToPath(test.meta.file));
 const rootCwd = path.join(dirname, '..');
@@ -44,4 +44,37 @@ test('sync - cwd option', t => {
 test('sync - normalize option', async t => {
 	const package_ = readPackageSync({normalize: false});
 	t.is(package_.name, 'unicorn ');
+});
+
+const pkgJson = {
+	name: 'unicorn ',
+	version: '1.0.0',
+	type: 'module',
+};
+
+test('parsePackage - json input', t => {
+	const package_ = parsePackage({...pkgJson});
+	t.is(package_.name, 'unicorn');
+	t.deepEqual(
+		readPackageSync(),
+		package_,
+	);
+});
+
+test('parsePackage - string input', t => {
+	const package_ = parsePackage(JSON.stringify(pkgJson));
+	t.is(package_.name, 'unicorn');
+	t.deepEqual(
+		readPackageSync(),
+		package_,
+	);
+});
+
+test('parsePackage - normalize option', t => {
+	const package_ = parsePackage({...pkgJson}, {normalize: false});
+	t.is(package_.name, 'unicorn ');
+	t.deepEqual(
+		readPackageSync({normalize: false}),
+		package_,
+	);
 });

@@ -53,6 +53,27 @@ Default: `true`
 
 [Normalize](https://github.com/npm/normalize-package-data#what-normalization-currently-entails) the package data.
 
+### parsePackage(packageFile, options?)
+
+Parses an object or string into JSON.
+
+#### packageFile
+
+Type: `object | string`\
+
+An object or a stringified object to be parsed as package.json.
+
+#### options
+
+Type: `object`
+
+##### normalize
+
+Type: `boolean`\
+Default: `true`
+
+[Normalize](https://github.com/npm/normalize-package-data#what-normalization-currently-entails) the package data.
+
 ## Related
 
 - [read-pkg-up](https://github.com/sindresorhus/read-pkg-up) - Read the closest package.json file
