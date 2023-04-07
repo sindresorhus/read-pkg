@@ -61,7 +61,7 @@ Note: `packageFile` is cloned using [`structuredClone`](https://developer.mozill
 
 #### packageFile
 
-Type: `object | string`\
+Type: `object | string`
 
 An object or a stringified object to be parsed as a package.json.
 
