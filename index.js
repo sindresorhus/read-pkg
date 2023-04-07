@@ -1,5 +1,5 @@
-import process from 'node:process';
-import fs, {promises as fsPromises} from 'node:fs';
+import fs from 'node:fs';
+import fsPromises from 'node:fs/promises';
 import path from 'node:path';
 import {fileURLToPath} from 'node:url';
 import parseJson from 'parse-json';
@@ -7,10 +7,7 @@ import normalizePackageData from 'normalize-package-data';
 
 const toPath = urlOrPath => urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath;
 
-const getPackagePath = cwd => {
-	const packageDir = toPath(cwd) || process.cwd();
-	return path.resolve(packageDir, 'package.json');
-};
+const getPackagePath = cwd => path.resolve(toPath(cwd) ?? '.', 'package.json');
 
 const _readPackage = (file, normalize) => {
 	const json = typeof file === 'string'
