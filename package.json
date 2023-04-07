@@ -36,7 +36,7 @@
 	"dependencies": {
 		"@types/normalize-package-data": "^2.4.1",
 		"normalize-package-data": "^5.0.0",
-		"parse-json": "^6.0.2",
+		"parse-json": "^7.0.0",
 		"type-fest": "^3.8.0"
 	},
 	"devDependencies": {
