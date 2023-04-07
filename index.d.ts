@@ -1,7 +1,8 @@
-import * as typeFest from 'type-fest';
-import * as normalize from 'normalize-package-data';
+/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
+import type {PackageJson as typeFestPackageJson} from 'type-fest';
+import type {Package as normalizePackage} from 'normalize-package-data';
 
-export interface Options {
+export type Options = {
 	/**
 	Current working directory.
 
@@ -15,14 +16,20 @@ export interface Options {
 	@default true
 	*/
 	readonly normalize?: boolean;
-}
+};
 
-export interface NormalizeOptions extends Options {
+// eslint-disable-next-line @typescript-eslint/naming-convention
+type _NormalizeOptions = {
 	readonly normalize?: true;
-}
+};
 
-export type NormalizedPackageJson = PackageJson & normalize.Package;
-export type PackageJson = typeFest.PackageJson;
+export type NormalizeOptions = _NormalizeOptions & Options;
+
+export type ParseOptions = Omit<Options, 'cwd'>;
+export type NormalizeParseOptions = _NormalizeOptions & ParseOptions;
+
+export type NormalizedPackageJson = PackageJson & normalizePackage;
+export type PackageJson = typeFestPackageJson;
 
 /**
 @returns The parsed JSON.
@@ -57,3 +64,6 @@ console.log(readPackageSync({cwd: 'some-other-directory'});
 */
 export function readPackageSync(options?: NormalizeOptions): NormalizedPackageJson;
 export function readPackageSync(options: Options): PackageJson;
+
+export function parsePackage(packageFile: PackageJson | string, options?: NormalizeParseOptions): NormalizedPackageJson;
+export function parsePackage(packageFile: PackageJson | string, options: ParseOptions): PackageJson;

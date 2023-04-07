@@ -13,10 +13,10 @@
 	"type": "module",
 	"exports": "./index.js",
 	"engines": {
-		"node": ">=12.20"
+		"node": ">=16"
 	},
 	"scripts": {
-		"test": "xo && ava && tsd"
+		"test": "xo && tsd && cd test && ava"
 	},
 	"files": [
 		"index.js",
@@ -35,18 +35,13 @@
 	],
 	"dependencies": {
 		"@types/normalize-package-data": "^2.4.1",
-		"normalize-package-data": "^3.0.2",
-		"parse-json": "^5.2.0",
-		"type-fest": "^2.0.0"
+		"normalize-package-data": "^5.0.0",
+		"parse-json": "^7.0.0",
+		"type-fest": "^3.8.0"
 	},
 	"devDependencies": {
-		"ava": "^3.15.0",
-		"tsd": "^0.17.0",
-		"xo": "^0.44.0"
-	},
-	"xo": {
-		"ignores": [
-			"test/test.js"
-		]
+		"ava": "^5.2.0",
+		"tsd": "^0.28.1",
+		"xo": "^0.54.0"
 	}
 }
