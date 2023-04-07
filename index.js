@@ -43,6 +43,7 @@ export function parsePackage(packageFile, {normalize = true} = {}) {
 	}
 
 	// Input should not be modified - if `structuredClone` is available, do a deep clone, shallow otherwise
+	// TODO: Remove shallow clone when targeting Node.js 18
 	const clonedPackageFile = isObject
 		? (globalThis.structuredClone === undefined
 			? {...packageFile}

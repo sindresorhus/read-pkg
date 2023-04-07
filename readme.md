@@ -57,13 +57,13 @@ Default: `true`
 
 Parses an object or string into JSON.
 
-Note: `packageFile` is cloned using [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) to prevent modification to the input object. In environments without `structuredClone` (such as Node 16), a shallow spread is used instead, which can cause deep properties of the object to be modified. Consider cloning the object before using `parsePackage` if that's the case.
+Note: `packageFile` is cloned using [`structuredClone`](https://developer.mozilla.org/en-US/docs/Web/API/structuredClone) to prevent modification to the input object. This function is available from Node.js 18 on. In environments without `structuredClone` (such as Node.js 16), a shallow spread is used instead, which can cause deep properties of the object to be modified. Consider cloning the object before using `parsePackage` if that's the case.
 
 #### packageFile
 
 Type: `object | string`\
 
-An object or a stringified object to be parsed as package.json.
+An object or a stringified object to be parsed as a package.json.
 
 #### options
 
