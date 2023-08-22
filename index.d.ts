@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-redundant-type-constituents */
 import type {PackageJson as typeFestPackageJson} from 'type-fest';
 import type {Package as normalizePackage} from 'normalize-package-data';
 
