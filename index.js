@@ -39,13 +39,7 @@ export function parsePackage(packageFile, {normalize = true} = {}) {
 		throw new TypeError('`packageFile` should be either an `object` or a `string`.');
 	}
 
-	// Input should not be modified - if `structuredClone` is available, do a deep clone, shallow otherwise
-	// TODO: Remove shallow clone when targeting Node.js 18
-	const clonedPackageFile = isObject
-		? (globalThis.structuredClone === undefined
-			? {...packageFile}
-			: structuredClone(packageFile))
-		: packageFile;
+	const clonedPackageFile = isObject ? structuredClone(packageFile) : packageFile;
 
 	return _readPackage(clonedPackageFile, normalize);
 }
