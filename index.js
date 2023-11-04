@@ -1,11 +1,9 @@
 import fs from 'node:fs';
 import fsPromises from 'node:fs/promises';
 import path from 'node:path';
-import {fileURLToPath} from 'node:url';
 import parseJson from 'parse-json';
 import normalizePackageData from 'normalize-package-data';
-
-const toPath = urlOrPath => urlOrPath instanceof URL ? fileURLToPath(urlOrPath) : urlOrPath;
+import {toPath} from 'unicorn-magic';
 
 const getPackagePath = cwd => path.resolve(toPath(cwd) ?? '.', 'package.json');
 

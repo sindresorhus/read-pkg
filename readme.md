@@ -76,6 +76,6 @@ Default: `true`
 
 ## Related
 
-- [read-pkg-up](https://github.com/sindresorhus/read-pkg-up) - Read the closest package.json file
-- [write-pkg](https://github.com/sindresorhus/write-pkg) - Write a `package.json` file
+- [read-package-up](https://github.com/sindresorhus/read-package-up) - Read the closest package.json file
+- [write-package](https://github.com/sindresorhus/write-package) - Write a `package.json` file
 - [load-json-file](https://github.com/sindresorhus/load-json-file) - Read and parse a JSON file

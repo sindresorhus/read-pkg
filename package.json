@@ -15,6 +15,7 @@
 		"types": "./index.d.ts",
 		"default": "./index.js"
 	},
+	"sideEffects": false,
 	"engines": {
 		"node": ">=18"
 	},
@@ -40,7 +41,8 @@
 		"@types/normalize-package-data": "^2.4.3",
 		"normalize-package-data": "^6.0.0",
 		"parse-json": "^8.0.0",
-		"type-fest": "^4.6.0"
+		"type-fest": "^4.6.0",
+		"unicorn-magic": "^0.1.0"
 	},
 	"devDependencies": {
 		"ava": "^5.3.1",
