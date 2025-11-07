@@ -1,49 +1,50 @@
 import {fileURLToPath, pathToFileURL} from 'node:url';
 import path from 'node:path';
-import test from 'ava';
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
 import {readPackage, readPackageSync, parsePackage} from '../index.js';
 
-const dirname = path.dirname(fileURLToPath(test.meta.file));
+const dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootCwd = path.join(dirname, '..');
 
-test('async', async t => {
+test('async', async () => {
 	const package_ = await readPackage();
-	t.is(package_.name, 'unicorn');
-	t.truthy(package_._id);
+	assert.strictEqual(package_.name, 'unicorn');
+	assert.ok(package_._id);
 });
 
-test('async - cwd option', async t => {
+test('async - cwd option', async () => {
 	const package_ = await readPackage({cwd: rootCwd});
-	t.is(package_.name, 'read-pkg');
-	t.deepEqual(
+	assert.strictEqual(package_.name, 'read-pkg');
+	assert.deepStrictEqual(
 		await readPackage({cwd: pathToFileURL(rootCwd)}),
 		package_,
 	);
 });
 
-test('async - normalize option', async t => {
+test('async - normalize option', async () => {
 	const package_ = await readPackage({normalize: false});
-	t.is(package_.name, 'unicorn ');
+	assert.strictEqual(package_.name, 'unicorn ');
 });
 
-test('sync', t => {
+test('sync', () => {
 	const package_ = readPackageSync();
-	t.is(package_.name, 'unicorn');
-	t.truthy(package_._id);
+	assert.strictEqual(package_.name, 'unicorn');
+	assert.ok(package_._id);
 });
 
-test('sync - cwd option', t => {
+test('sync - cwd option', () => {
 	const package_ = readPackageSync({cwd: rootCwd});
-	t.is(package_.name, 'read-pkg');
-	t.deepEqual(
+	assert.strictEqual(package_.name, 'read-pkg');
+	assert.deepStrictEqual(
 		readPackageSync({cwd: pathToFileURL(rootCwd)}),
 		package_,
 	);
 });
 
-test('sync - normalize option', t => {
+test('sync - normalize option', () => {
 	const package_ = readPackageSync({normalize: false});
-	t.is(package_.name, 'unicorn ');
+	assert.strictEqual(package_.name, 'unicorn ');
 });
 
 const pkgJson = {
@@ -52,53 +53,53 @@ const pkgJson = {
 	type: 'module',
 };
 
-test('parsePackage - json input', t => {
+test('parsePackage - json input', () => {
 	const package_ = parsePackage(pkgJson);
-	t.is(package_.name, 'unicorn');
-	t.deepEqual(
+	assert.strictEqual(package_.name, 'unicorn');
+	assert.deepStrictEqual(
 		readPackageSync(),
 		package_,
 	);
 });
 
-test('parsePackage - string input', t => {
+test('parsePackage - string input', () => {
 	const package_ = parsePackage(JSON.stringify(pkgJson));
-	t.is(package_.name, 'unicorn');
-	t.deepEqual(
+	assert.strictEqual(package_.name, 'unicorn');
+	assert.deepStrictEqual(
 		readPackageSync(),
 		package_,
 	);
 });
 
-test('parsePackage - normalize option', t => {
+test('parsePackage - normalize option', () => {
 	const package_ = parsePackage(pkgJson, {normalize: false});
-	t.is(package_.name, 'unicorn ');
-	t.deepEqual(
+	assert.strictEqual(package_.name, 'unicorn ');
+	assert.deepStrictEqual(
 		readPackageSync({normalize: false}),
 		package_,
 	);
 });
 
-test('parsePackage - errors on invalid input', t => {
-	t.throws(
+test('parsePackage - errors on invalid input', () => {
+	assert.throws(
 		() => parsePackage(['foo', 'bar']),
 		{message: '`packageFile` should be either an `object` or a `string`.'},
 	);
 
-	t.throws(
+	assert.throws(
 		() => parsePackage(null),
 		{message: '`packageFile` should be either an `object` or a `string`.'},
 	);
 
-	t.throws(
+	assert.throws(
 		() => parsePackage(() => ({name: 'unicorn'})),
 		{message: '`packageFile` should be either an `object` or a `string`.'},
 	);
 });
 
-test('parsePackage - does not modify source object', t => {
+test('parsePackage - does not modify source object', () => {
 	const pkgObject = {name: 'unicorn', version: '1.0.0'};
 	const package_ = parsePackage(pkgObject);
 
-	t.not(pkgObject, package_);
+	assert.notStrictEqual(pkgObject, package_);
 });
