@@ -3,7 +3,7 @@ import fsPromises from 'node:fs/promises';
 import path from 'node:path';
 import parseJson from 'parse-json';
 import normalizePackageData from 'normalize-package-data';
-import {toPath} from 'unicorn-magic';
+import {toPath} from 'unicorn-magic/node';
 
 const getPackagePath = cwd => path.resolve(toPath(cwd) ?? '.', 'package.json');
 
